@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Button, Container, Typography} from "@mui/material";
 import Box from '@mui/material/Box';
 import {Link, useSearchParams} from "react-router-dom";
-import {differenceInDays, parse} from "date-fns";
+import {differenceInDays, parse, startOfToday} from "date-fns";
 import NumberFormat from "react-number-format";
 import {formatWithOptions} from "date-fns/fp";
 import koLocale from 'date-fns/locale/ko';
@@ -13,9 +13,9 @@ export default function Result() {
     const targetDateParam = searchParams.get("target_date");
     if (targetDateParam == null) return <></>;
 
-    const targetDate = parse(targetDateParam, "yyyy.MM.dd", new Date());
-    // 1일 미만으로 남았을 경우 D-1 이므로, 1을 더한다.
-    const remainDays = differenceInDays(targetDate, new Date()) + 1;
+    // startOfToday()를 써서 시간 영향을 제거한다.
+    const targetDate = parse(targetDateParam, "yyyy.MM.dd", startOfToday());
+    const remainDays = differenceInDays(targetDate, startOfToday());
     const strTargetDate = formatWithOptions({locale: koLocale}, 'y년 M월 d일')(targetDate)
 
     return (

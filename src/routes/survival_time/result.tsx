@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Button, Container, Typography} from "@mui/material";
 import Box from '@mui/material/Box';
 import {Link, useSearchParams} from "react-router-dom";
-import {addYears, differenceInDays, parse, subSeconds} from "date-fns";
+import {addYears, differenceInDays, parse, startOfDay, startOfToday, subSeconds} from "date-fns";
 import NumberFormat from "react-number-format";
 import {formatWithOptions} from "date-fns/fp";
 import koLocale from 'date-fns/locale/ko';
@@ -15,12 +15,12 @@ export default function Result() {
     if (lifespanParam == null || birthdayParam == null) return <></>;
 
     const lifespan = parseInt(lifespanParam);
-    const birthday = parse(birthdayParam, "yyyy.MM.dd", new Date());
+    const birthday = parse(birthdayParam, "yyyy.MM.dd", startOfToday());
     // 해당 나이에서 다음 생일을 맞기 1초 전을 사망일시로 설정
-    const deathDay = subSeconds(addYears(birthday, lifespan + 1), 1);
+    const deathDay = subSeconds(addYears(birthday, lifespan), 1);
     const strDeathDay = formatWithOptions({locale: koLocale}, 'y년 M월 d일')(deathDay)
-    // 1일 미만으로 남았을 경우 D-1 이므로, 1을 더한다.
-    const remainDays = differenceInDays(deathDay, new Date()) + 1;
+    // startOfToday()를 써서 날짜 비교시 시간 영향을 제거한다.
+    const remainDays = differenceInDays(startOfDay(deathDay), startOfToday());
 
     return (
         <Container maxWidth="xs">
