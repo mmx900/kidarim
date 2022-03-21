@@ -36,10 +36,10 @@ function App() {
                                             sx={{my: 2, color: 'white', display: 'block'}}>
                                         디데이
                                     </Button>
-                                    <Button component={Link} to={`/days_left`}
+                                    {/*<Button component={Link} to={`/days_left`}
                                             sx={{my: 2, color: 'white', display: 'block'}}>
                                         경과일
-                                    </Button>
+                                    </Button>*/}
                                     <Button component={Link} to={`/survival_time`}
                                             sx={{my: 2, color: 'white', display: 'block'}}>
                                         잔여 생존일
