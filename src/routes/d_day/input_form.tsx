@@ -65,7 +65,7 @@ export default function InputForm() {
                     renderInput={(params) => <TextField {...params} />}
                 />
                 <TextField id="title"
-                           label="원하는 그날의 이름"
+                           label="목표일 이름"
                            name="title"
                            margin="normal"
                            defaultValue={titleParam}
