@@ -21,18 +21,22 @@ export default function InputForm() {
         if (targetDate == null) return;
         // TODO 오늘 이전 날짜는 설정 안 되게
         const strDate = formatWithOptions({locale: koLocale}, 'yyyy.MM.dd')(targetDate)
-        navigate(`/d_day/result?title=${title}&target_date=${strDate}`, {replace: true});
+
+        let queryString = new URLSearchParams({target_date: strDate});
+        if (title && title.toString().trim()) queryString.append("title", title.toString());
+
+        navigate(`/d_day/result?${queryString}`, {replace: true});
     };
 
     const [searchParams,] = useSearchParams();
     const titleParam = searchParams.get("title");
     const targetDateParam = searchParams.get("target_date");
-    try{
-        if(targetDateParam && targetDateParam.trim()) {
+    try {
+        if (targetDateParam && targetDateParam.trim()) {
             const b = parse(targetDateParam, "yyyy.MM.dd", new Date());
-            if(targetDate === initDate) setTargetDate(b);
+            if (targetDate === initDate) setTargetDate(b);
         }
-    }catch (e) {
+    } catch (e) {
         //ignore
     }
 

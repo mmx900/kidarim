@@ -22,19 +22,23 @@ export default function InputForm() {
         if (lifespan == null || birthday == null) return;
         // TODO 오늘 이전 날짜는 설정 안 되게
         const strDate = formatWithOptions({locale: koLocale}, 'yyyy.MM.dd')(birthday)
-        navigate(`/survival_time/result?lifespan=${lifespan}&title=${title}&birthday=${strDate}`, {replace: true});
+
+        let queryString = new URLSearchParams({birthday: strDate, lifespan: lifespan.toString()});
+        if (title && title.toString().trim()) queryString.append("title", title.toString());
+
+        navigate(`/survival_time/result?${queryString}`, {replace: true});
     };
 
     const [searchParams,] = useSearchParams();
     const lifespanParam = searchParams.get("lifespan");
     const titleParam = searchParams.get("title");
     const birthdayParam = searchParams.get("birthday");
-    try{
-        if(birthdayParam && birthdayParam.trim()) {
+    try {
+        if (birthdayParam && birthdayParam.trim()) {
             const b = parse(birthdayParam, "yyyy.MM.dd", new Date());
-            if(birthday === initDate) setBirthday(b);
+            if (birthday === initDate) setBirthday(b);
         }
-    }catch (e) {
+    } catch (e) {
         //ignore
     }
 
