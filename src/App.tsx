@@ -5,7 +5,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import {AppBar, Button, CssBaseline, Toolbar, Typography} from "@mui/material";
 import Box from '@mui/material/Box';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
-import {BrowserRouter, Link, Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import {Helmet} from "react-helmet";
 
 import koLocale from 'date-fns/locale/ko';
@@ -50,16 +50,13 @@ function App() {
                     </Box>
                     <Routes>
                         {/*사이트 방문 직후 공유시 URL이 바뀌지 않게 한다*/}
-                        {/*<Route path="/" element={<Navigate replace to="/d_day/form"/>}/>*/}
+                        {/*<Route path="/" element={<Navigate replace to="/d_day"/>}/>*/}
                         <Route path="/" element={<DDayForm/>}/>
-                        <Route path="/d_day" element={<Navigate replace to="/d_day/form"/>}/>
-                        <Route path="/d_day/form" element={<DDayForm/>}/>
+                        <Route path="/d_day" element={<DDayForm/>}/>
                         <Route path="/d_day/result" element={<DDayResult/>}/>
-                        <Route path="/days_left" element={<Navigate replace to="/days_left/form"/>}/>
-                        <Route path="/days_left/form" element={<DaysLeftForm/>}/>
+                        <Route path="/days_left" element={<DaysLeftForm/>}/>
                         <Route path="/days_left/result" element={<DaysLeftResult/>}/>
-                        <Route path="/survival_time" element={<Navigate replace to="/survival_time/form"/>}/>
-                        <Route path="/survival_time/form" element={<SurvivalTimeForm/>}/>
+                        <Route path="/survival_time" element={<SurvivalTimeForm/>}/>
                         <Route path="/survival_time/result" element={<SurvivalTimeResult/>}/>
                     </Routes>
                 </ThemeProvider>

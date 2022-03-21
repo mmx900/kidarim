@@ -49,7 +49,7 @@ export default function Result() {
                             thousandSeparator={true} value={remainDays} displayType="text"/>일 남았습니다.
                         </>)}
                 </p>
-                <Button component={Link} to={`/survival_time/form?${searchParams}`}>다시 계산하기</Button>
+                <Button component={Link} to={`/survival_time?${searchParams}`}>다시 계산하기</Button>
             </Box>
         </Container>
     );

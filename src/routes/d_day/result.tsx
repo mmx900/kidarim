@@ -54,7 +54,7 @@ export default function Result() {
                             </>)}
                     </>)}
                 </p>
-                <Button component={Link} to={`/d_day/form?${searchParams}`}>다시 계산하기</Button>
+                <Button component={Link} to={`/d_day?${searchParams}`}>다시 계산하기</Button>
             </Box>
         </Container>
     );
