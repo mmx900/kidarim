@@ -10,6 +10,8 @@ import {BrowserRouter, Link, Navigate, Route, Routes} from "react-router-dom";
 import koLocale from 'date-fns/locale/ko';
 import DDayForm from "./routes/d_day/input_form";
 import DDayResult from "./routes/d_day/result";
+import DaysLeftForm from "./routes/days_left/input_form";
+import DaysLeftResult from "./routes/days_left/result";
 import SurvivalTimeForm from "./routes/survival_time/input_form";
 import SurvivalTimeResult from "./routes/survival_time/result";
 
@@ -31,6 +33,10 @@ function App() {
                                             sx={{my: 2, color: 'white', display: 'block'}}>
                                         디데이
                                     </Button>
+                                    <Button component={Link} to={`/days_left`}
+                                            sx={{my: 2, color: 'white', display: 'block'}}>
+                                        경과일
+                                    </Button>
                                     <Button component={Link} to={`/survival_time`}
                                             sx={{my: 2, color: 'white', display: 'block'}}>
                                         잔여 생존일
@@ -46,6 +52,9 @@ function App() {
                         <Route path="/d_day" element={<Navigate replace to="/d_day/form"/>}/>
                         <Route path="/d_day/form" element={<DDayForm/>}/>
                         <Route path="/d_day/result" element={<DDayResult/>}/>
+                        <Route path="/days_left" element={<Navigate replace to="/days_left/form"/>}/>
+                        <Route path="/days_left/form" element={<DaysLeftForm/>}/>
+                        <Route path="/days_left/result" element={<DaysLeftResult/>}/>
                         <Route path="/survival_time" element={<Navigate replace to="/survival_time/form"/>}/>
                         <Route path="/survival_time/form" element={<SurvivalTimeForm/>}/>
                         <Route path="/survival_time/result" element={<SurvivalTimeResult/>}/>
