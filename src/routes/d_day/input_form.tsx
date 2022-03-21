@@ -10,29 +10,27 @@ import {parse} from "date-fns";
 
 export default function InputForm() {
     const initDate = new Date()
-    const [birthday, setBirthday] = React.useState<Date | null>(initDate);
+    const [targetDate, setTargetDate] = React.useState<Date | null>(initDate);
     const navigate = useNavigate();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const lifespan = data.get('lifespan');
         const title = data.get('title');
 
-        if (lifespan == null || birthday == null) return;
+        if (targetDate == null) return;
         // TODO 오늘 이전 날짜는 설정 안 되게
-        const strDate = formatWithOptions({locale: koLocale}, 'yyyy.MM.dd')(birthday)
-        navigate(`../result?lifespan=${lifespan}&title=${title}&birthday=${strDate}`, {replace: true});
+        const strDate = formatWithOptions({locale: koLocale}, 'yyyy.MM.dd')(targetDate)
+        navigate(`/d_day/result?title=${title}&target_date=${strDate}`, {replace: true});
     };
 
     const [searchParams,] = useSearchParams();
-    const lifespanParam = searchParams.get("lifespan");
     const titleParam = searchParams.get("title");
-    const birthdayParam = searchParams.get("birthday");
+    const targetDateParam = searchParams.get("target_date");
     try{
-        if(birthdayParam && birthdayParam.trim()) {
-            const b = parse(birthdayParam, "yyyy.MM.dd", new Date());
-            if(birthday === initDate) setBirthday(b);
+        if(targetDateParam && targetDateParam.trim()) {
+            const b = parse(targetDateParam, "yyyy.MM.dd", new Date());
+            if(targetDate === initDate) setTargetDate(b);
         }
     }catch (e) {
         //ignore
@@ -52,30 +50,15 @@ export default function InputForm() {
                 component="form" onSubmit={handleSubmit}
             >
                 <Typography component="h1" variant="h5" sx={{mb: 1}}>
-                    잔여 생존일 계산기
+                    디데이 계산
                 </Typography>
                 <DatePicker
-                    label="생일"
-                    value={birthday}
+                    label="목표일 *"
+                    value={targetDate}
                     onChange={(newValue) => {
-                        setBirthday(newValue);
+                        setTargetDate(newValue);
                     }}
                     renderInput={(params) => <TextField {...params} />}
-                />
-                <TextField
-                    id="lifespan"
-                    name="lifespan"
-                    label="예상 수명(년)"
-                    margin="normal"
-                    type="number"
-                    defaultValue={lifespanParam}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    inputProps={{
-                        max: 150
-                    }}
-                    required
                 />
                 <TextField id="title"
                            label="원하는 그날의 이름"

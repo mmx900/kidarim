@@ -19,7 +19,8 @@ export default function Result() {
     // 해당 나이에서 다음 생일을 맞기 1초 전을 사망일시로 설정
     const deathDay = subSeconds(addYears(birthday, lifespan + 1), 1);
     const strDeathDay = formatWithOptions({locale: koLocale}, 'y년 M월 d일')(deathDay)
-    const remainDays = differenceInDays(deathDay, new Date());
+    // 1일 미만으로 남았을 경우 D-1 이므로, 1을 더한다.
+    const remainDays = differenceInDays(deathDay, new Date()) + 1;
 
     return (
         <Container maxWidth="xs">
@@ -39,14 +40,14 @@ export default function Result() {
                 <p>
                     {titleParam && titleParam.trim() ?
                         (<>
-                            만 {lifespan}세까지 생존한다고 가정했을 때, {titleParam}은 {strDeathDay}이며 남은 날자는 <NumberFormat
-                            thousandSeparator={true} value={remainDays} displayType="text"/>일 입니다.
+                            만 {lifespan}세까지 생존한다고 가정했을 때, {titleParam}은 {strDeathDay}로 <NumberFormat
+                            thousandSeparator={true} value={remainDays} displayType="text"/>일 남았습니다.
                         </>) : (<>
-                            만 {lifespan}세까지 생존한다고 가정했을 때, 예정 사망일은 {strDeathDay}이며 남은 날자는 <NumberFormat
-                            thousandSeparator={true} value={remainDays} displayType="text"/>일 입니다.
+                            만 {lifespan}세까지 생존한다고 가정했을 때, 예정 사망일은 {strDeathDay}로 <NumberFormat
+                            thousandSeparator={true} value={remainDays} displayType="text"/>일 남았습니다.
                         </>)}
                 </p>
-                <Button component={Link} to={`/input_form?${searchParams}`}>다시 계산하기</Button>
+                <Button component={Link} to={`/survival_time/form?${searchParams}`}>다시 계산하기</Button>
             </Box>
         </Container>
     );
