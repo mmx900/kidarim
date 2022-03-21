@@ -40,7 +40,9 @@ function App() {
                         </AppBar>
                     </Box>
                     <Routes>
-                        <Route path="/" element={<Navigate replace to="/d_day/form"/>}/>
+                        {/*사이트 방문 직후 공유시 URL이 바뀌지 않게 한다*/}
+                        {/*<Route path="/" element={<Navigate replace to="/d_day/form"/>}/>*/}
+                        <Route path="/" element={<DDayForm/>}/>
                         <Route path="/d_day" element={<Navigate replace to="/d_day/form"/>}/>
                         <Route path="/d_day/form" element={<DDayForm/>}/>
                         <Route path="/d_day/result" element={<DDayResult/>}/>
