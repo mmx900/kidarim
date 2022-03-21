@@ -15,6 +15,7 @@ import DaysLeftForm from "./routes/days_left/input_form";
 import DaysLeftResult from "./routes/days_left/result";
 import SurvivalTimeForm from "./routes/survival_time/input_form";
 import SurvivalTimeResult from "./routes/survival_time/result";
+import FirebaseAnalytics from "./components/FirebaseAnalytics";
 
 function App() {
     const theme = createTheme();
@@ -24,6 +25,7 @@ function App() {
                 <ThemeProvider theme={theme}>
                     {/* TODO public/index.html도 함께 수정 */}
                     <Helmet titleTemplate="%s - 기다림 계산기" defaultTitle="기다림 계산기"/>
+                    <FirebaseAnalytics/>
                     <CssBaseline/>
                     <Box sx={{flexGrow: 1}}>
                         <AppBar position="static">
