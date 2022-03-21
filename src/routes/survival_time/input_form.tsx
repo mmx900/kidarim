@@ -7,6 +7,7 @@ import {useNavigate, useSearchParams} from "react-router-dom";
 import {formatWithOptions} from "date-fns/fp";
 import koLocale from 'date-fns/locale/ko';
 import {parse} from "date-fns";
+import {Helmet} from "react-helmet";
 
 export default function InputForm() {
     const initDate = new Date()
@@ -44,6 +45,7 @@ export default function InputForm() {
 
     return (
         <Container maxWidth="xs">
+            <Helmet title="잔여 생존일"/>
             <Box
                 sx={{
                     marginTop: 8,

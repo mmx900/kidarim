@@ -6,6 +6,7 @@ import {addYears, differenceInDays, parse, startOfDay, startOfToday, subSeconds}
 import NumberFormat from "react-number-format";
 import {formatWithOptions} from "date-fns/fp";
 import koLocale from 'date-fns/locale/ko';
+import {Helmet} from "react-helmet";
 
 export default function Result() {
     const [searchParams,] = useSearchParams();
@@ -24,6 +25,7 @@ export default function Result() {
 
     return (
         <Container maxWidth="xs">
+            <Helmet title="잔여 생존일"/>
             <Box
                 sx={{
                     marginTop: 8,

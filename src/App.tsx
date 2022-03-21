@@ -6,6 +6,7 @@ import {AppBar, Button, CssBaseline, Toolbar, Typography} from "@mui/material";
 import Box from '@mui/material/Box';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {BrowserRouter, Link, Navigate, Route, Routes} from "react-router-dom";
+import {Helmet} from "react-helmet";
 
 import koLocale from 'date-fns/locale/ko';
 import DDayForm from "./routes/d_day/input_form";
@@ -21,6 +22,8 @@ function App() {
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={koLocale}>
             <BrowserRouter>
                 <ThemeProvider theme={theme}>
+                    {/* TODO public/index.html도 함께 수정 */}
+                    <Helmet titleTemplate="%s - 기다림 계산기" defaultTitle="기다림 계산기"/>
                     <CssBaseline/>
                     <Box sx={{flexGrow: 1}}>
                         <AppBar position="static">
