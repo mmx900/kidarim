@@ -2,9 +2,10 @@ import * as React from 'react';
 import {Button, Container, Typography} from "@mui/material";
 import Box from '@mui/material/Box';
 import {Link, useSearchParams} from "react-router-dom";
-import {differenceInDays, parse, startOfToday} from "date-fns";
+import {parse, startOfToday} from "date-fns";
 import NumberFormat from "react-number-format";
 import {Helmet} from "react-helmet";
+import {getDDay} from "../../libs/calculator";
 import DateFormat from "../../components/DateFormat";
 
 export default function Result() {
@@ -15,7 +16,7 @@ export default function Result() {
 
     // startOfToday()를 써서 시간 영향을 제거한다.
     const targetDate = parse(targetDateParam, "yyyy.MM.dd", startOfToday());
-    const remainDays = differenceInDays(targetDate, startOfToday());
+    const remainDays = getDDay({destDate: targetDate});
 
     return (
         <Container maxWidth="xs">
