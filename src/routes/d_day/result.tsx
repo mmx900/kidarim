@@ -4,9 +4,8 @@ import Box from '@mui/material/Box';
 import {Link, useSearchParams} from "react-router-dom";
 import {differenceInDays, parse, startOfToday} from "date-fns";
 import NumberFormat from "react-number-format";
-import {formatWithOptions} from "date-fns/fp";
-import koLocale from 'date-fns/locale/ko';
 import {Helmet} from "react-helmet";
+import DateFormat from "../../components/DateFormat";
 
 export default function Result() {
     const [searchParams,] = useSearchParams();
@@ -17,7 +16,6 @@ export default function Result() {
     // startOfToday()를 써서 시간 영향을 제거한다.
     const targetDate = parse(targetDateParam, "yyyy.MM.dd", startOfToday());
     const remainDays = differenceInDays(targetDate, startOfToday());
-    const strTargetDate = formatWithOptions({locale: koLocale}, 'y년 M월 d일')(targetDate)
 
     return (
         <Container maxWidth="xs">
@@ -46,10 +44,10 @@ export default function Result() {
                     </>) : (<>
                         {titleParam && titleParam.trim() ?
                             (<>
-                                {strTargetDate} {titleParam}까지 <NumberFormat
+                                <DateFormat date={targetDate}/> {titleParam}까지 <NumberFormat
                                 thousandSeparator={true} value={remainDays} displayType="text"/>일 남았습니다.
                             </>) : (<>
-                                D-Day인 {strTargetDate}까지 <NumberFormat
+                                D-Day인 <DateFormat date={targetDate}/>까지 <NumberFormat
                                 thousandSeparator={true} value={remainDays} displayType="text"/>일 남았습니다.
                             </>)}
                     </>)}
