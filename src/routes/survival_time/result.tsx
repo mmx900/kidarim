@@ -7,6 +7,7 @@ import NumberFormat from "react-number-format";
 import {Helmet} from "react-helmet";
 import DateFormat from "../../components/DateFormat";
 import {getDeathDay, getRemainSurvivalTimeInDays} from "../../libs/calculator";
+import {ShareButton} from "../../components/ShareButton";
 
 export default function Result() {
     const [searchParams,] = useSearchParams();
@@ -48,6 +49,7 @@ export default function Result() {
                         </>)}
                 </p>
                 <Button component={Link} to={`/survival_time?${searchParams}`}>다시 계산하기</Button>
+                <ShareButton/>
             </Box>
         </Container>
     );

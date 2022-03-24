@@ -6,6 +6,7 @@ import {differenceInDays, parse, startOfToday} from "date-fns";
 import NumberFormat from "react-number-format";
 import {Helmet} from "react-helmet";
 import DateFormat from "../../components/DateFormat";
+import {ShareButton} from "../../components/ShareButton";
 
 export default function Result() {
     const [searchParams,] = useSearchParams();
@@ -53,6 +54,7 @@ export default function Result() {
                     </>)}
                 </p>
                 <Button component={Link} to={`/days_left?${searchParams}`}>다시 계산하기</Button>
+                <ShareButton/>
             </Box>
         </Container>
     );
