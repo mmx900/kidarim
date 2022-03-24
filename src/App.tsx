@@ -9,11 +9,11 @@ import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import {Helmet} from "react-helmet";
 
 import koLocale from 'date-fns/locale/ko';
-import DDayForm from "./routes/d_day/input_form";
+import DDayForm from "./routes/d_day/form";
 import DDayResult from "./routes/d_day/result";
-import DaysLeftForm from "./routes/days_left/input_form";
+import DaysLeftForm from "./routes/days_left/form";
 import DaysLeftResult from "./routes/days_left/result";
-import SurvivalTimeForm from "./routes/survival_time/input_form";
+import SurvivalTimeForm from "./routes/survival_time/form";
 import SurvivalTimeResult from "./routes/survival_time/result";
 import FirebaseAnalytics from "./components/FirebaseAnalytics";
 

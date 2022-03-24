@@ -9,7 +9,7 @@ import koLocale from 'date-fns/locale/ko';
 import {parse} from "date-fns";
 import {Helmet} from "react-helmet";
 
-export default function InputForm() {
+export default function Form() {
     const initDate = new Date()
     const [targetDate, setTargetDate] = React.useState<Date | null>(initDate);
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ export default function InputForm() {
         let queryString = new URLSearchParams({target_date: strDate});
         if (title && title.toString().trim()) queryString.append("title", title.toString());
 
-        navigate(`/days_left/result?${queryString}`, {replace: true});
+        navigate(`/d_day/result?${queryString}`, {replace: true});
     };
 
     const [searchParams,] = useSearchParams();
@@ -43,7 +43,7 @@ export default function InputForm() {
 
     return (
         <Container maxWidth="xs">
-            <Helmet title="잔여일"/>
+            <Helmet title="디데이"/>
             <Box
                 sx={{
                     marginTop: 8,
@@ -56,7 +56,7 @@ export default function InputForm() {
                 component="form" onSubmit={handleSubmit}
             >
                 <Typography component="h1" variant="h5" sx={{mb: 1}}>
-                    경과일
+                    디데이 계산
                 </Typography>
                 <DatePicker
                     label="목표일 *"
