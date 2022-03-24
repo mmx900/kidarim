@@ -2,10 +2,11 @@ import * as React from 'react';
 import {Button, Container, Typography} from "@mui/material";
 import Box from '@mui/material/Box';
 import {Link, useSearchParams} from "react-router-dom";
-import {addYears, differenceInDays, parse, startOfDay, startOfToday, subSeconds} from "date-fns";
+import {parse, startOfToday} from "date-fns";
 import NumberFormat from "react-number-format";
 import {Helmet} from "react-helmet";
 import DateFormat from "../../components/DateFormat";
+import {getDeathDay, getRemainSurvivalTimeInDays} from "../../libs/calculator";
 
 export default function Result() {
     const [searchParams,] = useSearchParams();
@@ -15,11 +16,10 @@ export default function Result() {
     if (lifespanParam == null || birthdayParam == null) return <></>;
 
     const lifespan = parseInt(lifespanParam);
-    const birthday = parse(birthdayParam, "yyyy.MM.dd", startOfToday());
-    // 해당 나이에서 다음 생일을 맞기 1초 전을 사망일시로 설정
-    const deathDay = subSeconds(addYears(birthday, lifespan), 1);
     // startOfToday()를 써서 날짜 비교시 시간 영향을 제거한다.
-    const remainDays = differenceInDays(startOfDay(deathDay), startOfToday());
+    const birthday = parse(birthdayParam, "yyyy.MM.dd", startOfToday());
+    const deathDay = getDeathDay(birthday, lifespan);
+    const remainDays = getRemainSurvivalTimeInDays(birthday, lifespan);
 
     return (
         <Container maxWidth="xs">
