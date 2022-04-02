@@ -4,9 +4,9 @@ import App from './App';
 import {getDDay, getDeathDay, getRemainSurvivalTimeInDays} from "./libs/calculator";
 import {differenceInDays, startOfDay, startOfToday, startOfTomorrow, subSeconds} from "date-fns";
 
-test('renders learn react link', () => {
+test('renders index page', () => {
     render(<App/>);
-    const linkElement = screen.getByText(/learn react/i);
+    const linkElement = screen.getByText(/디데이 계산/i);
     expect(linkElement).toBeInTheDocument();
 });
 
