@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Button, Container, Typography} from "@mui/material";
+import {Button, Container, Stack, Typography} from "@mui/material";
 import Box from '@mui/material/Box';
 import {Link, useSearchParams} from "react-router-dom";
 import {differenceInDays, parse, startOfToday} from "date-fns";
@@ -53,8 +53,10 @@ export default function Result() {
                             </>)}
                     </>)}
                 </p>
-                <Button component={Link} to={`/days_left?${searchParams}`}>다시 계산하기</Button>
-                <ShareButton/>
+                <Stack direction="column" spacing={2}>
+                    <Button variant="outlined" component={Link} to={`/days_left?${searchParams}`}>다시 계산하기</Button>
+                    <ShareButton/>
+                </Stack>
             </Box>
         </Container>
     );

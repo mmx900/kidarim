@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Button, SwipeableDrawer} from "@mui/material";
 import {SharePanel} from "./SharePanel";
+import {Share as ShareIcon} from "@mui/icons-material";
 
 export function ShareButton() {
     const [sharePanelOpen, setSharePanelOpen] = React.useState(false);
@@ -21,7 +22,7 @@ export function ShareButton() {
     };
 
     return <>
-        <Button onClick={share}>공유하기</Button>
+        <Button variant="outlined" startIcon={<ShareIcon/>} onClick={share}>공유하기</Button>
         <SwipeableDrawer open={sharePanelOpen}
                          onClose={toggleDrawer(false)}
                          onOpen={toggleDrawer(true)}
