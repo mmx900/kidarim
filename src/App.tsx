@@ -3,6 +3,7 @@ import * as React from 'react';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import {AppBar, Button, CssBaseline, Toolbar, Typography} from "@mui/material";
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
@@ -18,7 +19,18 @@ import SurvivalTimeResult from "./routes/survival_time/result";
 import FirebaseAnalytics from "./components/FirebaseAnalytics";
 
 function App() {
-    const theme = createTheme();
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+    const theme = React.useMemo(
+        () =>
+            createTheme({
+                palette: {
+                    mode: prefersDarkMode ? 'dark' : 'light',
+                },
+            }),
+        [prefersDarkMode],
+    );
+
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={koLocale}>
             <BrowserRouter>
