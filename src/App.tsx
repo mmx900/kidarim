@@ -17,6 +17,7 @@ import DaysLeftResult from "./routes/days_left/result";
 import SurvivalTimeForm from "./routes/survival_time/form";
 import SurvivalTimeResult from "./routes/survival_time/result";
 import FirebaseAnalytics from "./components/FirebaseAnalytics";
+import Home from "./routes/home";
 
 function App() {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -46,6 +47,10 @@ function App() {
                                     기다림 계산기
                                 </Typography>
                                 <Box sx={{flexGrow: 1, display: 'flex'}}>
+                                    <Button component={Link} to={`/home`}
+                                            sx={{my: 2, color: 'white', display: 'block'}}>
+                                        홈
+                                    </Button>
                                     <Button component={Link} to={`/d_day`}
                                             sx={{my: 2, color: 'white', display: 'block'}}>
                                         디데이
@@ -66,6 +71,7 @@ function App() {
                         {/*사이트 방문 직후 공유시 URL이 바뀌지 않게 한다*/}
                         {/*<Route path="/" element={<Navigate replace to="/d_day"/>}/>*/}
                         <Route path="/" element={<DDayForm/>}/>
+                        <Route path="/home" element={<Home/>}/>
                         <Route path="/d_day" element={<DDayForm/>}/>
                         <Route path="/d_day/result" element={<DDayResult/>}/>
                         <Route path="/days_left" element={<DaysLeftForm/>}/>
