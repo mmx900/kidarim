@@ -85,6 +85,7 @@ export default function InputForm() {
                 />
                 <TextField id="title"
                            label="기일 이름"
+                           helperText="당신의 기일을 뭐라고 부르길 원하나요?"
                            name="title"
                            margin="normal"
                            defaultValue={titleParam}
